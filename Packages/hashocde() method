@@ -1,0 +1,64 @@
+package com.jtc.lang3;
+
+class Employee{
+	int empid;
+	String name;
+	String city;
+	long phone;
+	
+	
+	public Employee() {
+		
+	}
+	public Employee(int empid, String name, String city, long phone) {
+		super();
+		this.empid = empid;
+		this.name = name;
+		this.city = city;
+		this.phone = phone;
+	}
+	
+	public int hashCode() {
+		return 99;
+	}
+	
+	
+	public boolean equals(Object o)
+	{
+		Employee e=(Employee)o; //type cast
+		if((e.empid==this.empid)&&(e.name.equals(this.name))&&(e.city.equals(this.city)))
+			return true;
+		return false;
+	}
+	@Override
+	public String toString() {
+		return "Employee [empid=" + empid + ", name=" + name + ", city=" + city + ", phone=" + phone + "]";
+	}
+	
+	
+	
+	
+}
+public class jtc {
+	public static void main(String[] args) {
+		Employee e1=new Employee();
+		System.out.println(e1);
+		Employee e2=new Employee(101,"Raj","Dhampur",8077);
+		//System.out.println(e2);
+		//two instances will give two diffrent values
+		Employee e3=new Employee(101,"Raj","Dhampur",8077);
+		Employee e4=new Employee(101,"Raj1","Dhampur",8077);
+		Employee e5=new Employee(101,"Raj2","Dhampur",8077);
+		System.out.println(e2==e3);
+		
+		 // Still both bn and e2==e3 are returning false due to reference
+		System.out.println(e1.hashCode());
+		System.out.println(e2.hashCode());
+		System.out.println(e3.hashCode());
+		//all will give diffrent hashcode now we will override this hashcode method with 99 value
+		boolean bn=e2.equals(e3);
+		System.out.println(bn);
+		System.out.println(e2.equals(e4));
+	}
+
+}
