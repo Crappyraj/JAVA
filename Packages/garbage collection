@@ -1,0 +1,50 @@
+package com.jtc.lang4;
+
+ class Student {
+	 int sid;
+	 String name;
+	 String city;
+	 
+	 public Student()
+	 {
+		 
+	 }
+
+	public Student(int sid, String name, String city) {
+		super();
+		this.sid = sid;
+		this.name = name;
+		this.city = city;
+	}
+
+	@Override
+	public void finalize() {
+		System.out.println("Resource cleanup");
+	}
+	@Override
+	public String toString() {
+		return "Student [sid=" + sid + ", name=" + name + ", city=" + city + "]";
+	}
+	
+	
+ }
+	 
+
+
+public class jtc{
+	public static void main(String args[])
+	{
+		System.out.println("Main is running");
+		Student s1=new Student();
+		System.gc();
+	//it is a method it can't call the garbage collector it can only request
+		new Student();
+		s1=null;
+		System.gc();
+		Student s2=new Student();
+		Student s3=new Student();
+		s2=new Student();
+		s3=s2;
+		System.gc();
+	}//we can't call gc explicitly we can only request through System.gc() method.
+}//Here gc has come without calling finalize method.
